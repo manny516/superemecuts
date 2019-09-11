@@ -1,0 +1,54 @@
+.service-container{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap:25px;
+
+  .service-card{
+    background: #eeeeee;
+    box-shadow: 5px 5px 2px #929aab;
+    margin-bottom: 30px;
+    padding-bottom:20px;
+
+    .barber-img{
+      width:50%;
+      margin:30px auto;
+
+    }
+
+    .services{  
+      margin-top:50px;
+      list-style: none;
+      
+      ul{
+        margin-bottom: 30px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-column-gap:5px;
+        list-style: none;
+      }
+
+    }
+
+    .submit-form{
+      width:40%;
+      height:30px;
+      display: block;
+      margin: auto;
+    }
+
+    .social-media{
+      margin-top:50px;
+      
+      ul{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-column-gap : 5px;
+        list-style: none;
+        text-align: center;
+      }
+    }
+
+    h2{ text-align:center;}
+
+  }
+}
