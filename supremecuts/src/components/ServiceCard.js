@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import CalendarComp from './CalendarComp'; 
 class ServiceCard extends Component{
- 
+    
+  
     render(){
 
         return(
@@ -11,8 +13,8 @@ class ServiceCard extends Component{
                     <div id={"userId" + item.barberIndex} className="service-card" key={item.barberIndex} data-id={item.barberIndex}>
                         <div className="barber-img"> <img src={item.userImage} alt="Place holder" />  </div>
                         <h2 className="barber-name"> {item.name} </h2>
-
-                        <div className="services"> 
+                        <CalendarComp test={this.props.testing}/>
+                        <div className="services">
                             <ul>
                             {item.services.map( srItem => (
                                 <li key={srItem+1}> <input onClick={this.props.clickEvent} type="checkbox" name={srItem} value={srItem}  /> {srItem} </li>
