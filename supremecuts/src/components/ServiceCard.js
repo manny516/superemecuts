@@ -13,7 +13,7 @@ class ServiceCard extends Component{
                     <div id={"userId" + item.barberIndex} className="service-card" key={item.barberIndex} data-id={item.barberIndex}>
                         <div className="barber-img"> <img src={item.userImage} alt="Place holder" />  </div>
                         <h2 className="barber-name"> {item.name} </h2>
-                        <CalendarComp test={this.props.testing}/>
+                        <CalendarComp stateChange={this.props.testing} />
                         <div className="services">
                             <ul>
                             {item.services.map( srItem => (

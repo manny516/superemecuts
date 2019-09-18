@@ -3,6 +3,7 @@ import '../css/App.scss';
 import ServiceCard from './ServiceCard';
 class App extends Component{
  
+  //Create and set State Objects to track action on Application
   constructor(){
     super();
     this.state = {
@@ -16,11 +17,14 @@ class App extends Component{
 
       }
     }
+
     this.handleClick = this.handleClick.bind(this);
     this.targetData = this.targetData.bind(this);
-    this.stateChanging = this.stateChanging.bind(this);
+    this.trackAptDateState = this.trackAptDateState.bind(this);
   }
 
+  // Mounts component then fetches the Json data
+  // Set State using the json data created 
   componentDidMount(){
     fetch('./barber_data.json')
     .then(response => response.json())
@@ -40,11 +44,7 @@ class App extends Component{
     
   }
 
-  stateChanging(value){
-      this.setState({appointment : {barberName: 'Test'}});
-      console.log("This is a state test: " + this.state.tryState);
-  }
-
+  //Grab Parent and it's id of Currect Service that will be selected
   targetData(event){
     let currentEvent = event.currentTarget; 
     let listParent = currentEvent.parentElement.parentElement.parentElement.parentElement;
@@ -57,12 +57,17 @@ class App extends Component{
     return currentBarberState;
   }
 
-
-
+  //Function to be passed in prop  to trigger tragetData when clicked event is invoked
+  //Pass target Function to click handle function to manage click event to trigger parent Data request
   handleClick(pass){
     this.targetData(pass);
-    console.log(this.state.date);
  }
+
+ //Function to be passed in prop to update parent Comps Date state
+//Passes in value to Set Appointment Date to the selected date picked by user.
+ trackAptDateState(value){
+  this.setState({appointment:{aptDate : value}});
+}
 
  
 
@@ -71,7 +76,7 @@ class App extends Component{
     return (
       <div className="header-title">
         <h1> Supreme Cuts </h1>
-        <ServiceCard barberShop={this.state.barberApt} clickEvent={this.handleClick} theDate={this.state.date} testing={this.stateChanging}   />
+        <ServiceCard barberShop={this.state.barberApt} clickEvent={this.handleClick} theDate={this.state.date} testing={this.trackAptDateState}   />
       </div>
     );
   }

@@ -17,7 +17,7 @@ class CalendarComp extends Component{
         this.setState({
             date
         });
-        this.props.test(date);
+        this.props.stateChange(date);
         console.log(this.state.date);
     }
     
