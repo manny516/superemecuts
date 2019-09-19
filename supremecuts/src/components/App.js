@@ -17,9 +17,7 @@ class App extends Component{
 
       }
     }
-
-    this.handleClick = this.handleClick.bind(this);
-    this.targetData = this.targetData.bind(this);
+   
     this.trackAptDateState = this.trackAptDateState.bind(this);
   }
 
@@ -44,39 +42,20 @@ class App extends Component{
     
   }
 
-  //Grab Parent and it's id of Currect Service that will be selected
-  targetData(event){
-    let currentEvent = event.currentTarget; 
-    let listParent = currentEvent.parentElement.parentElement.parentElement.parentElement;
 
-    let userId = listParent.getAttribute("data-id");
-    let currentBarberState = this.state.barberApt[userId];
-    
-    console.log(listParent.getAttribute("data-id"));
-    console.log(currentEvent.value+" : " + currentBarberState['name']);
-    return currentBarberState;
+
+  //Function to be passed in prop to update parent Comps Date state
+  //Passes in value to Set Appointment Date to the selected date picked by user.
+  trackAptDateState(value){
+    this.setState({appointment:{aptDate : value}});
   }
-
-  //Function to be passed in prop  to trigger tragetData when clicked event is invoked
-  //Pass target Function to click handle function to manage click event to trigger parent Data request
-  handleClick(pass){
-    this.targetData(pass);
- }
-
- //Function to be passed in prop to update parent Comps Date state
-//Passes in value to Set Appointment Date to the selected date picked by user.
- trackAptDateState(value){
-  this.setState({appointment:{aptDate : value}});
-}
-
- 
 
   render() {    
   
     return (
       <div className="header-title">
         <h1> Supreme Cuts </h1>
-        <ServiceCard barberShop={this.state.barberApt} clickEvent={this.handleClick} theDate={this.state.date} testing={this.trackAptDateState}   />
+        <ServiceCard barberShop={this.state.barberApt} theDate={this.state.date} testing={this.trackAptDateState}   />
       </div>
     );
   }
