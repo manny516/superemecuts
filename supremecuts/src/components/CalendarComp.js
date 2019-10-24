@@ -26,7 +26,7 @@ class CalendarComp extends Component{
 
         return(
             <div>
-                <DatePicker onChange={this.onChange} value={this.state.date} />
+                <DatePicker onChange={this.onChange} value={this.state.date} returnValue="end" />
             </div>
         )
         

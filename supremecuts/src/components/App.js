@@ -7,9 +7,10 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      barberApt : [],
+      barberData : [],
       theIndex : 0,
       appointment : {
+        baberId : '',
         barberName : '',
         aptDate : '',
         services : [],
@@ -19,6 +20,7 @@ class App extends Component{
     }
    
     this.trackAptDateState = this.trackAptDateState.bind(this);
+    this.serviceQueue = this.serviceQueue.bind(this);
   }
 
   // Mounts component then fetches the Json data
@@ -34,7 +36,7 @@ class App extends Component{
       });
 
       this.setState({
-        barberApt : apts, 
+        barberData : apts, 
       });
       
     });
@@ -43,19 +45,26 @@ class App extends Component{
   }
 
 
-
   //Function to be passed in prop to update parent Comps Date state
   //Passes in value to Set Appointment Date to the selected date picked by user.
   trackAptDateState(value){
     this.setState({appointment:{aptDate : value}});
   }
 
+  serviceQueue(bId,bName, services){
+    this.setState({appointment:{
+        baberId : bId,
+        barberName : bName,
+        services : [...services]
+    }})
+  }
+
+
   render() {    
-  
     return (
       <div className="header-title">
         <h1> Supreme Cuts </h1>
-        <ServiceCard barberShop={this.state.barberApt} theDate={this.state.date} testing={this.trackAptDateState}   />
+        <ServiceCard barberShop={this.state.barberData} theDate={this.trackAptDateState} serviceState={this.serviceQueue} serviceData={this.state.appointment}  />
       </div>
     );
   }
