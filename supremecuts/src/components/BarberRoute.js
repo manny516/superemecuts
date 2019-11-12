@@ -33,9 +33,11 @@ import {
 
 function  BarberRoute(props) {
 
+
     return (
 
         <Router>
+          {props.serviceState()}
       <div>
         <ul>
           <li>

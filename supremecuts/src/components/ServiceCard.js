@@ -5,7 +5,7 @@ import {
     Route,
     Link 
 } from 'react-router-dom';
-import { tsObjectKeyword } from '@babel/types';
+//import { tsObjectKeyword } from '@babel/types';
 
 class ServiceCard extends Component{
     
@@ -14,7 +14,6 @@ class ServiceCard extends Component{
         this.targetData = this.targetData.bind(this);
         this.testArray = []; 
         this.catchId = this.catchId.bind(this);
-        // this.eventDriven = this.eventDriven.bind(this);
     }
   
     componentDidMount(){
@@ -31,13 +30,19 @@ class ServiceCard extends Component{
 
             if(typeof indexId === 'number'){
                 const filterById = this.props.barberShop.filter( user => user.barberIndex === indexId) ;
+                const filterArray = filterById.map(socialMedia =>(
+                    socialMedia.socialMedia.map( media =>(
+                        media
+                    ))
+                ));
                 const filterOutput = filterById.map( content =>(
                     content.services.map(newItem =>(
                             newItem
                     ))
                 ));
-    
+                //this.props.serviceSate(idInt,"Danny",filterOutput,filterArray);
                 domEle.setAttribute("data-serv",filterOutput);
+                domEle.setAttribute("data-social-media",filterArray);
             }
         }
 
@@ -86,10 +91,9 @@ class ServiceCard extends Component{
         // console.log(currentBarberState);
     
     }
-
+    
   //Pass target Function to click handle function to manage click event to trigger parent Data request
     render(){        
-   
         const outputCardData = this.props.barberShop.map( item => (
             <div id={"user-id-"+item.barberIndex} className="service-card" key={item.barberIndex} data-id={item.barberIndex}>
                 <div className="barber-img"> <img src={item.userImage} alt="Place holder" /></div>
