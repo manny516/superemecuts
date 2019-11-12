@@ -12,21 +12,24 @@ class CalendarComp extends Component{
         this.onChange = this.onChange.bind(this);
     }
 
-
     onChange(date){ 
-        this.setState({
-            date
-        });
-        this.props.stateChange(date);
-        console.log(this.state.date);
+        this.props.theDate(date);
+        //this.props.stateChange(this.state.date);
+        //console.log(this.state.date);
     }
     
 
+    
+    // componentDidMount(){
+    //     this.props.stateChange(this.state.date);
+    // }
+
+   
     render(){
 
         return(
             <div>
-                <DatePicker onChange={this.onChange} value={this.state.date} returnValue="end" />
+                <DatePicker onChange={this.onChange} value={this.props.serviceData.aptDate} />
             </div>
         )
         

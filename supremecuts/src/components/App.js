@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../css/App.scss';
-import ServiceCard from './ServiceCard';
+
+import BarberRoute from './BarberRoute';
 class App extends Component{
  
   //Create and set State Objects to track action on Application
@@ -23,6 +24,11 @@ class App extends Component{
     this.serviceQueue = this.serviceQueue.bind(this);
   }
 
+  trackAptDateState(value){
+    this.setState({appointment:{aptDate : value}});
+  }
+
+
   // Mounts component then fetches the Json data
   // Set State using the json data created 
   componentDidMount(){
@@ -40,16 +46,12 @@ class App extends Component{
       });
       
     });
-    
-    
+        
   }
 
 
   //Function to be passed in prop to update parent Comps Date state
   //Passes in value to Set Appointment Date to the selected date picked by user.
-  trackAptDateState(value){
-    this.setState({appointment:{aptDate : value}});
-  }
 
   serviceQueue(bId,bName, services){
     this.setState({appointment:{
@@ -63,8 +65,7 @@ class App extends Component{
   render() {    
     return (
       <div className="header-title">
-        <h1> Supreme Cuts </h1>
-        <ServiceCard barberShop={this.state.barberData} theDate={this.trackAptDateState} serviceState={this.serviceQueue} serviceData={this.state.appointment}  />
+        <BarberRoute barberShop={this.state.barberData} serviceData={this.state.appointment} theDate={this.trackAptDateState} serviceState={this.serviceQueue}/>
       </div>
     );
   }
